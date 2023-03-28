@@ -1,25 +1,21 @@
-import logo from './logo.svg';
+import React, {useState} from 'react';
+import TaskForm from './components/TaskForm';
+import TaskList from './components/TaskList';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const [editingTask, setEditingTask] = useState(null);
+
+    return (
+        <div className="container d-flex justify-content-center ">
+            <div className="content-wrapper ">
+                <h1 className="text-center">To-Do List</h1>
+                    <TaskForm editingTask={editingTask} setEditingTask={setEditingTask}/>
+                    <TaskList setEditingTask={setEditingTask}/>
+            </div>
+        </div>
+    );
 }
 
 export default App;

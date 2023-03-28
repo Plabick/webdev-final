@@ -1,38 +1,46 @@
-.App {
-  text-align: center;
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap');
+
+/* Customize Bootstrap variables */
+:root {
+  --primary: #AEC6CF;
+  --secondary: #FDFD96;
+  --success: #B2DF8A;
+  --danger: #F78FA7;
+  --warning: #FFAB91;
+  --info: #B3E5FC;
+  --light: #E0E0E0;
+  --dark: #536dfe;
+  --font-family-base: 'Poppins', sans-serif;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/* General styles */
+body {
+  font-family: var(--font-family-base);
+  background-color: #F7F7F7;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.container {
+  max-width: 800px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+h1 {
+  font-weight: 300;
+  margin-bottom: 1rem;
+  color: var(--primary);
 }
 
-.App-link {
-  color: #61dafb;
+/* TaskForm styles */
+.task-form .form-control {
+  border: none;
+  border-bottom: 1px solid var(--primary);
+  border-radius: 0;
+  box-shadow: none;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.task-form .btn-primary {
+  background-color: var(--primary);
+  border: none;
+  font-weight: 400;
 }
+
