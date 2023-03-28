@@ -10,17 +10,16 @@ router.route('/').get(async (req, res) => {
     }
 });
 
-router.route('/add').post(async (req, res) => {
-    const { text, done } = req.body;
+router.route('/add').post((req, res) => {
+    const text = req.body.text;
+    const user = req.body.user; // Add this line
+    const done = false;
+    const newTask = new Task({ text, done, user });
 
-    const newTask = new Task({ text, done });
-
-    try {
-        await newTask.save();
-        res.json('Task added!');
-    } catch (err) {
-        res.status(400).json('Error: ' + err);
-    }
+    newTask
+        .save()
+        .then(() => res.json('Task added!'))
+        .catch((err) => res.status(400).json('Error: ' + err));
 });
 
 router.route('/:id').get(async (req, res) => {

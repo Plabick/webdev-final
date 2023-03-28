@@ -8,8 +8,8 @@ export const fetchTasks = () => async dispatch => {
 };
 
 export const addTask = task => async dispatch => {
-    const { data } = await axios.post(`${apiUrl}/add`, task);
-    dispatch({ type: 'ADD_TASK', payload: { ...task, _id: data._id } }); // Spread the task object and add the _id from the response
+    const response = await axios.post('http://localhost:5002/tasks/add', task);
+    dispatch({ type: 'ADD_TASK', payload: { ...task, _id: response._id } }); // Spread the task object and add the _id from the response
 };
 
 export const toggleTask = id => async dispatch => {

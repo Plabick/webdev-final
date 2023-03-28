@@ -1,69 +1,63 @@
-import React, { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import {deleteTask, fetchTasks, toggleTask} from '../redux/actions';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTimes } from '@fortawesome/free-solid-svg-icons';
-
-function TaskList({ setEditingTask }) {
-    const tasks = useSelector(state => state.tasks);
-    const dispatch = useDispatch();
-
-    useEffect(() => {
-        dispatch(fetchTasks());
-    }, [dispatch]);
-
-    const handleEdit = task => {
-        setEditingTask(task);
-    };
-
-    const handleToggle = id => {
-        dispatch(toggleTask(id));
-    };
-    const handleDelete = id => {
-        dispatch(deleteTask(id));
-    };
+import React, {useEffect} from 'react';
+import {useDispatch, useSelector} from 'react-redux';
+import {deleteTask, editTask, fetchTasks, toggleTask} from '../redux/actions';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {faTimes} from '@fortawesome/free-solid-svg-icons';
 
 
+    function TaskList() {
+        const tasks = useSelector((state) => state.tasks);
+        const dispatch = useDispatch();
 
-    const renderTaskCard = (task) => (
-        <div key={task._id} className="card mb-3" style={{ width: '100%', maxWidth: '500px' }}>
-            <div className="card-body">
-                <div className="d-flex align-items-center">
-                    <input
-                        type="checkbox"
-                        className="mr-2"
-                        checked={task.done}
-                        onChange={() => handleToggle(task._id)}
-                    />
-                    <span
-                        className={task.done ? 'done' : ''}
-                        onClick={() => handleEdit(task)}
-                    >
+        useEffect(() => {
+            dispatch(fetchTasks());
+        }, [dispatch]);
+
+        const handleToggle = (id) => {
+            dispatch(toggleTask(id));
+        };
+
+        const handleDelete = (id) => {
+            dispatch(deleteTask(id));
+        };
+        const handleEdit = task => {
+            dispatch(editTask(task));
+        };
+
+        const renderTaskCard = (task) => (
+            <div key={task._id} className="card mb-3" style={{ width: '100%', maxWidth: '500px' }}>
+                <div className="card-body task-card">
+                    <div className="d-flex align-items-start">
+                        <input
+                            type="checkbox"
+                            className="mr-2"
+                            checked={task.done}
+                            onChange={() => handleToggle(task._id)}
+                        />
+                        <span
+                            className={task.done ? 'done' : ''}
+                            onClick={() => handleEdit(task)}
+                        >
             {task.text}
           </span>
-                    <FontAwesomeIcon
-                        icon={faTimes}
-                        className="ml-auto text-danger"
-                        onClick={() => handleDelete(task._id)}
-                        style={{ cursor: 'pointer' }}
-                    />
+                        <FontAwesomeIcon
+                            icon={faTimes}
+                            className="ml-auto text-danger"
+                            onClick={() => handleDelete(task._id)}
+                            style={{ cursor: 'pointer' }}
+                        />
+                    </div>
+                    <div className="text-muted text-right" style={{ fontSize: '0.8rem' }}>
+                        {task.user}
+                    </div>
                 </div>
             </div>
-        </div>
-    );
+        );
+        return (
+            <div className="d-flex flex-column align-items-center">
+                {tasks.map((task) => renderTaskCard(task))}
+            </div>
+        );
+    }
 
-    const completedTasks = tasks.filter(task => task.done);
-    const uncompletedTasks = tasks.filter(task => !task.done);
-
-    return (
-        <div className="d-flex flex-column align-items-center">
-            <h2 className="mb-4">To Do</h2>
-            {uncompletedTasks.map(renderTaskCard)}
-
-            <h2 className="mb-4 mt-5">Completed</h2>
-            {completedTasks.map(renderTaskCard)}
-        </div>
-    );
-}
-
-export default TaskList;
+    export default TaskList;
