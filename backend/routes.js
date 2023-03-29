@@ -1,6 +1,8 @@
 const router = require('express').Router();
 const Task = require('./task');
 
+
+
 router.route('/').get(async (req, res) => {
     try {
         const tasks = await Task.find();
@@ -71,3 +73,13 @@ router.delete('/:id', async (req, res) => {
 });
 module.exports = router;
 
+router.get('/user/:username', async (req, res) => {
+    const { username } = req.params;
+    try {
+        const tasks = await Task.find({ user: username });
+        console.log(tasks)
+        res.json(tasks);
+    } catch (error) {
+        res.status(500).json({ message: 'Error fetching tasks by user' });
+    }
+});

@@ -1,12 +1,14 @@
 import React, { useState, useContext } from 'react';
 import axios from 'axios';
 import UserContext from '../UserContext';
+import { useNavigate } from 'react-router-dom';
 
 function Login() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [message, setMessage] = useState('');
     const { setUser } = useContext(UserContext);
+    const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -15,6 +17,7 @@ function Login() {
             const { data } = await axios.post('http://localhost:5002/users/login', { username, password });
             setUser(data);
             setMessage('Logged in successfully');
+            navigate('/');
         } catch (err) {
             setMessage('Invalid username or password');
         }

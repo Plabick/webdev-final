@@ -1,10 +1,10 @@
 import React from 'react';
-import {BrowserRouter as Router, Link, Route, Routes} from 'react-router-dom';
+import { BrowserRouter as Router, Route, Link, Routes } from 'react-router-dom';
 import './App.css';
-import TaskForm from './components/TaskForm';
-import TaskList from './components/TaskList';
+import HomePage from './components/HomePage';
 import Login from './components/Login';
 import Register from './components/Register';
+import UserProfile from './components/UserProfile';
 import UserContext from './UserContext';
 
 function App() {
@@ -15,12 +15,12 @@ function App() {
     };
 
     return (
-        <UserContext.Provider value={{user, setUser}}>
+        <UserContext.Provider value={{ user, setUser }}>
             <Router>
                 <div className="container">
                     <div className="d-flex justify-content-between align-items-center my-3">
-                        <Link to="/" className=" btn">
-                            <h1>Chaotic Todo List</h1>
+                        <Link to="/" className="app-name-link text-decoration-none">
+                            <h1>Chaotic Todo</h1>
                         </Link>
                         <div>
                             {!user && (
@@ -41,21 +41,14 @@ function App() {
                                     </button>
                                 </>
                             )}
-
                         </div>
                     </div>
-                    <div className="d-flex flex-column align-items-center">
-                        {!user && (
-                            <Routes>
-                                <Route path="/login" element={<Login/>}/>
-                                <Route path="/register" element={<Register/>}/>
-                            </Routes>)}
-                        <hr/>
-                        <>
-                            {user && (<TaskForm/>)}
-                            <TaskList/>
-                        </>
-                    </div>
+                    <Routes>
+                        <Route path="/" element={<HomePage />} />
+                        <Route path="/login" element={<Login />} />
+                        <Route path="/register" element={<Register />} />
+                        <Route path="/user/:username" element={<UserProfile />} />
+                    </Routes>
                 </div>
             </Router>
         </UserContext.Provider>

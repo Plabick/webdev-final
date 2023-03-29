@@ -3,7 +3,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import {deleteTask, editTask, fetchTasks, toggleTask} from '../redux/actions';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faTimes} from '@fortawesome/free-solid-svg-icons';
-
+import { Link } from 'react-router-dom';
 
     function TaskList() {
         const tasks = useSelector((state) => state.tasks);
@@ -48,7 +48,9 @@ import {faTimes} from '@fortawesome/free-solid-svg-icons';
                         />
                     </div>
                     <div className="text-muted text-right" style={{ fontSize: '0.8rem' }}>
-                        {task.user}
+                        <Link to={`/user/${task.user}`} className="task-user link-dark button text-decoration-none">
+                            {task.user}
+                        </Link>
                     </div>
                 </div>
             </div>
