@@ -8,6 +8,7 @@ export const fetchTasks = () => async dispatch => {
 };
 
 export const addTask = task => async dispatch => {
+    console.log(task)
     const response = await axios.post('http://localhost:5002/tasks/add', task);
     dispatch({ type: 'ADD_TASK', payload: { ...task, _id: response._id } }); // Spread the task object and add the _id from the response
 };

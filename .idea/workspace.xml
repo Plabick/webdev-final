@@ -5,9 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c23e4213-c886-43c9-b4b6-d03f84b480f0" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/components/MovieSearch.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/routes/users.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/routes/users.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/HomePage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/HomePage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/TaskCard.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/TaskCard.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/TaskForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/TaskForm.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/TaskList.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/TaskList.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/UserProfile.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/UserProfile.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/actions.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/actions.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

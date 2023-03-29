@@ -10,6 +10,7 @@ const UserProfile = () => {
     const [user, setUser] = useState(null);
     const [email, setEmail] = useState('');
     const [phone_number, setPhoneNumber] = useState('');
+    const [edit, setEdit] = useState(false);
     const { user: loggedInUser } = useContext(UserContext);
 
     useEffect(() => {
@@ -37,6 +38,7 @@ const UserProfile = () => {
         try {
             await axios.put(`http://localhost:5002/users/update/${username}`, { email, phone_number });
             setUser({ ...user, email, phone_number });
+            setEdit(false);
         } catch (err) {
             console.error('Error updating user', err);
         }
@@ -47,29 +49,39 @@ const UserProfile = () => {
             <h4 className="text-muted">{username} is a {user.role}</h4>
             {isCurrentUserProfile && (
                 <>
-                    <form onSubmit={handleUpdate}>
-                        <div className="form-group">
-                            <label>Email:</label>
-                            <input
-                                type="email"
-                                value={email}
-                                onChange={(e) => setEmail(e.target.value)}
-                                className="form-control"
-                                required
-                            />
-                        </div>
-                        <div className="form-group">
-                            <label>Phone Number:</label>
-                            <input
-                                type="text"
-                                value={phone_number}
-                                onChange={(e) => setPhoneNumber(e.target.value)}
-                                className="form-control"
-                                required
-                            />
-                        </div>
-                        <button type="submit" className="btn btn-primary">Update</button>
-                    </form>
+                    {edit ? (
+                        <form onSubmit={handleUpdate}>
+                            <div className="form-group">
+                                <label>Email:</label>
+                                <input
+                                    type="email"
+                                    value={email}
+                                    onChange={(e) => setEmail(e.target.value)}
+                                    className="form-control"
+                                    required
+                                />
+                            </div>
+                            <div className="form-group">
+                                <label>Phone Number:</label>
+                                <input
+                                    type="text"
+                                    value={phone_number}
+                                    onChange={(e) => setPhoneNumber(e.target.value)}
+                                    className="form-control"
+                                    required
+                                />
+                            </div>
+                            <button type="submit" className="btn btn-primary">Update</button>
+                        </form>
+                    ) : (
+                        <>
+                            <p>Email: {user.email}</p>
+                            <p>Phone Number: {user.phone_number}</p>
+                            <button className="btn btn-primary" onClick={() => setEdit(!edit)}>
+                                {edit ? 'Cancel' : 'Edit'}
+                            </button>
+                        </>
+                    )}
                 </>
             )}
             <h2>{username}'s Tasks</h2>
@@ -81,4 +93,3 @@ const UserProfile = () => {
 };
 
 export default UserProfile;
-

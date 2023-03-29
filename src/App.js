@@ -6,6 +6,8 @@ import Login from './components/Login';
 import Register from './components/Register';
 import UserProfile from './components/UserProfile';
 import UserContext from './UserContext';
+import MovieSearch from "./components/MovieSearch";
+import {addTask} from "./redux/actions";
 
 function App() {
     const [user, setUser] = React.useState(null);
@@ -48,6 +50,8 @@ function App() {
                         <Route path="/login" element={<Login />} />
                         <Route path="/register" element={<Register />} />
                         <Route path="/user/:username" element={<UserProfile />} />
+                        <Route path="/search/:search" element={<MovieSearch onAdd={addTask} />} />
+
                     </Routes>
                 </div>
             </Router>

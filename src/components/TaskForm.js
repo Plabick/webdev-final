@@ -4,10 +4,15 @@ import { addTask } from '../redux/actions';
 import UserContext from '../UserContext';
 
 function TaskForm() {
+    const { user: loggedInUser } = useContext(UserContext);
+
     const [text, setText] = useState('');
     const dispatch = useDispatch();
     const { user } = useContext(UserContext);
 
+    if (!loggedInUser || loggedInUser.role !== 'maker') {
+        return (<h6>Only Makers Can Make Tasks</h6>);
+    }
     const handleSubmit = async (e) => {
         e.preventDefault();
 

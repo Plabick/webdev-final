@@ -1,13 +1,16 @@
-import React, {useEffect} from 'react';
+import React, {useContext, useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {deleteTask, editTask, fetchTasks, toggleTask} from '../redux/actions';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faTimes} from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
+import UserContext from "../UserContext";
 
     function TaskList() {
         const tasks = useSelector((state) => state.tasks);
         const dispatch = useDispatch();
+        const {user: loggedInUser} = useContext(UserContext);
+        const isChecker = loggedInUser && loggedInUser.role === 'checker';
 
         useEffect(() => {
             dispatch(fetchTasks());
@@ -24,16 +27,18 @@ import { Link } from 'react-router-dom';
             dispatch(editTask(task));
         };
 
-        const renderTaskCard = (task) => (
-            <div key={task._id} className="card mb-3" style={{ width: '100%', maxWidth: '500px' }}>
+        const renderTaskCard = (task) => {
+            const cardStyle = task.done ? 'list-group-item-success' : '';
+
+            return( <div key={task._id} className={`card mb-3 ${cardStyle}`} style={{ width: '100%', maxWidth: '500px' }}>
                 <div className="card-body task-card">
                     <div className="d-flex align-items-start">
-                        <input
+                        {isChecker &&(<input
                             type="checkbox"
                             className="mr-2"
                             checked={task.done}
                             onChange={() => handleToggle(task._id)}
-                        />
+                        />)}
                         <span
                             className={task.done ? 'done' : ''}
                             onClick={() => handleEdit(task)}
@@ -54,7 +59,7 @@ import { Link } from 'react-router-dom';
                     </div>
                 </div>
             </div>
-        );
+        );}
         return (
             <div className="d-flex flex-column align-items-center">
                 {tasks.map((task) => renderTaskCard(task))}
