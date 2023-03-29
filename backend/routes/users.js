@@ -44,4 +44,26 @@ router.get('/username/:username', async (req, res) => {
     }
 });
 
+router.put('/update/:username', async (req, res) => {
+    const { username } = req.params;
+    const { email, phone_number } = req.body;
+
+    try {
+        const user = await User.findOne({ username });
+
+        if (!user) {
+            return res.status(400).json({ message: 'User not found' });
+        }
+
+        user.email = email;
+        user.phone_number = phone_number;
+
+        await user.save();
+        res.json(user);
+    } catch (err) {
+        res.status(400).json({ message: 'Error updating user', error: err });
+    }
+});
+
+
 module.exports = router;
