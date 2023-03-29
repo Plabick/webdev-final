@@ -5,7 +5,7 @@ function renderTaskCard(task) {
     // eslint-disable-next-line react-hooks/rules-of-hooks
     const {user: loggedInUser} = useContext(UserContext);
     const isChecker = loggedInUser && loggedInUser.role === 'checker';
-    const cardStyle = task.done ? 'list-group-item-success' : '';
+    const cardStyle = task.done ? 'list-group-item-success' : 'list-group-item-warning';
 
     return (
         <div key={task._id} className={`card mb-3 ${cardStyle}`} style={{width: '100%', maxWidth: '500px'}}>

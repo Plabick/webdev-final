@@ -7,7 +7,6 @@ import Register from './components/Register';
 import UserProfile from './components/UserProfile';
 import UserContext from './UserContext';
 import MovieSearch from "./components/MovieSearch";
-import {addTask} from "./redux/actions";
 
 function App() {
     const [user, setUser] = React.useState(null);
@@ -37,7 +36,9 @@ function App() {
                             )}
                             {user && (
                                 <>
+                                    <Link to={`/user/${user.username}`} className={'text-decoration-none'}>
                                     <span className="logged-in-user me-2">{user.username}</span>
+                                        </Link>
                                     <button className="btn btn-outline-danger" onClick={handleLogout}>
                                         Logout
                                     </button>
@@ -50,7 +51,8 @@ function App() {
                         <Route path="/login" element={<Login />} />
                         <Route path="/register" element={<Register />} />
                         <Route path="/user/:username" element={<UserProfile />} />
-                        <Route path="/search/:search" element={<MovieSearch onAdd={addTask} />} />
+                        <Route path="/search/:search" element={<MovieSearch/>} />
+                        <Route path="/search" element={<MovieSearch/>} />
 
                     </Routes>
                 </div>

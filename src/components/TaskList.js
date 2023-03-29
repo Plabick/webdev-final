@@ -28,11 +28,11 @@ import UserContext from "../UserContext";
         };
 
         const renderTaskCard = (task) => {
-            const cardStyle = task.done ? 'list-group-item-success' : '';
+            const cardStyle = task.done ? 'list-group-item-success' : 'list-group-item-warning';
 
             return( <div key={task._id} className={`card mb-3 ${cardStyle}`} style={{ width: '100%', maxWidth: '500px' }}>
                 <div className="card-body task-card">
-                    <div className="d-flex align-items-start">
+                    <div className="d-flex align-items-center">
                         {isChecker &&(<input
                             type="checkbox"
                             className="mr-2"
@@ -47,7 +47,7 @@ import UserContext from "../UserContext";
           </span>
                         <FontAwesomeIcon
                             icon={faTimes}
-                            className="ml-auto text-danger"
+                            className=" text-danger p-10 xicon"
                             onClick={() => handleDelete(task._id)}
                             style={{ cursor: 'pointer' }}
                         />

@@ -4,6 +4,7 @@ import axios from 'axios';
 import { useNavigate, useParams } from 'react-router-dom';
 import UserContext from "../UserContext";
 
+
 const MovieSearch = ({ onAdd }) => {
     const { search } = useParams();
     const [query, setQuery] = useState(search || '');
@@ -39,19 +40,20 @@ const MovieSearch = ({ onAdd }) => {
             text: movie.Title,
             user: loggedInUser.username // Replace this with the actual user if needed
         };
-console.log(task)
         try {
             await axios.post('http://localhost:5002/tasks/add', task);
         } catch (error) {
             console.error('Error adding task:', error);
             alert('Error adding task. Please try again.');
         }
+        navigate('/');
     };
 
     return (
-        <div>
-            <h2>Movie Search</h2>
-            <form onSubmit={handleSubmit}>
+        <div className="container">
+            <div className="d-flex flex-column align-items-center">
+                <h2>Movie Search</h2>
+            <form onSubmit={handleSubmit} className="input-group mb-3 task-card">
                 <input
                     type="text"
                     value={query}
@@ -59,9 +61,12 @@ console.log(task)
                     placeholder="Search for movies..."
                     required
                 />
-                <button type="submit">Search</button>
+                <div className="input-group-append">
+                    <button className="btn btn-outline-secondary" type="submit">
+                        Search
+                    </button>
+                </div>
             </form>
-            <ul>
                 {movies.map((movie) => (
                     <div key={movie.imdbID} className="col-md-4">
                         <div className="card mb-4">
@@ -72,7 +77,7 @@ console.log(task)
                         </div>
                     </div>
                 ))}
-            </ul>
+            </div>
         </div>
     );
 };

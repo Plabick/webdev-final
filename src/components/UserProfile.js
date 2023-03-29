@@ -31,6 +31,7 @@ const UserProfile = () => {
     }
 
     const isCurrentUserProfile = loggedInUser && loggedInUser.username === user.username;
+    const userIsMaker = loggedInUser && loggedInUser.role === 'maker';
 
     const handleUpdate = async (e) => {
         e.preventDefault();
@@ -84,10 +85,10 @@ const UserProfile = () => {
                     )}
                 </>
             )}
-            <h2>{username}'s Tasks</h2>
-            <ul>{tasks.map((task) => (renderTaskCard(task)
-            ))}
-            </ul>
+
+            {userIsMaker && (<><h2>{username}'s Tasks</h2>
+            <ul>{tasks.map((task) => (renderTaskCard(task)))}
+            </ul></>)}
         </div>
     );
 };
