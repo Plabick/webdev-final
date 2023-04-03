@@ -38,7 +38,7 @@ function App() {
                             )}
                             {user && (
                                 <>
-                                    <Link to={`/user/${user.username}`} className={'text-decoration-none'}>
+                                    <Link to={`/profile/${user.username}`} className={'text-decoration-none'}>
                                     <span className="logged-in-user me-2">{user.username}</span>
                                         </Link>
                                     <button className="btn btn-outline-danger" onClick={handleLogout}>
@@ -52,7 +52,7 @@ function App() {
                         <Route path="/" element={<HomePage />} />
                         <Route path="/login" element={<Login />} />
                         <Route path="/register" element={<Register />} />
-                        <Route path="/user/:username" element={<UserProfile />} />
+                        <Route path="/profile/:username" element={<UserProfile />} />
                         <Route path="/search/:search" element={<MovieSearch/>} />
                         <Route path="/search" element={<MovieSearch/>} />
                         <Route path="/details/:id" element={<MovieDetails />} />

@@ -64,7 +64,7 @@ const MovieDetails = () => {
                 <ul className="list-group list-group-flush">
                     {relatedTasks.map(task => (
                         <li key={task._id} className="list-group-item">
-                            <Link to={`/user/${task.user}`} className="link-dark text-decoration-none">
+                            <Link to={`/profile/${task.user}`} className="link-dark text-decoration-none">
                                 {task.user}
                             </Link>
                         </li>

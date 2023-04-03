@@ -53,7 +53,7 @@ import UserContext from "../UserContext";
                         />
                     </div>
                     <div className="text-muted text-right" style={{ fontSize: '0.8rem' }}>
-                        <Link to={`/user/${task.user}`} className="task-user link-dark button text-decoration-none">
+                        <Link to={`/profile/${task.user}`} className="task-user link-dark button text-decoration-none">
                             {task.user}
                         </Link>
                     </div>
