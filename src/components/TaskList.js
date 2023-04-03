@@ -60,9 +60,19 @@ import UserContext from "../UserContext";
                 </div>
             </div>
         );}
+        const userTasks = loggedInUser ? tasks.filter(task => task.user === loggedInUser.username || task.done_by === loggedInUser.username) : [];
+        const otherTasks = loggedInUser ? tasks.filter(task => task.user !== loggedInUser.username && task.done_by !== loggedInUser.username) : tasks;
+
         return (
             <div className="d-flex flex-column align-items-center">
-                {tasks.map((task) => renderTaskCard(task))}
+                {loggedInUser && !isChecker && (
+                    <>
+                        <h3>Your Tasks</h3>
+                        {userTasks.map((task) => renderTaskCard(task))}
+                    </>
+                )}
+                <h3>All Tasks</h3>
+                {otherTasks.map((task) => renderTaskCard(task))}
             </div>
         );
     }

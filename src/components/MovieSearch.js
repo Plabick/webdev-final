@@ -3,6 +3,7 @@ import React, {useState, useEffect, useContext} from 'react';
 import axios from 'axios';
 import { useNavigate, useParams } from 'react-router-dom';
 import UserContext from "../UserContext";
+import { Link } from 'react-router-dom';
 
 
 const MovieSearch = ({ onAdd }) => {
@@ -73,6 +74,7 @@ const MovieSearch = ({ onAdd }) => {
                             <div className="card-body">
                                 <h3 className="card-title">{movie.Title} ({movie.Year})</h3>
                                 <button className="btn btn-primary" onClick={() => handleAdd(movie)}>Add</button>
+                                <Link to={`/details/${movie.imdbID}`} className="btn btn-info ml-2">Details</Link>
                             </div>
                         </div>
                     </div>

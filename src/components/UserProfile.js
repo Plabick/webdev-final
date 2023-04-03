@@ -31,7 +31,7 @@ const UserProfile = () => {
     }
 
     const isCurrentUserProfile = loggedInUser && loggedInUser.username === user.username;
-    const userIsMaker = loggedInUser && loggedInUser.role === 'maker';
+    const userIsMaker = user && user.role === 'maker';
 
     const handleUpdate = async (e) => {
         e.preventDefault();

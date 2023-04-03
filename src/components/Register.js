@@ -47,6 +47,7 @@ function Register() {
                     <input
                         type="text"
                         value={username}
+                        placeholder="UniqueUser123"
                         onChange={(e) => setUsername(e.target.value)}
                         className="form-control"
                         required
@@ -56,6 +57,7 @@ function Register() {
                     <label>Password:</label>
                     <input
                         type="password"
+                        placeholder="Hunter1"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                         className="form-control"
@@ -66,6 +68,7 @@ function Register() {
                         <input
                             type="text"
                             value={phone_number}
+                            placeholder="111-111-1111"
                             onChange={(e) => setPhoneNumber(e.target.value)}
                             className="form-control"
                             required
@@ -75,6 +78,7 @@ function Register() {
                         <label>Email:</label>
                         <input
                             type="email"
+                            placeholder="user@example.com"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
                             className="form-control"

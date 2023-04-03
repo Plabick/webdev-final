@@ -7,6 +7,8 @@ import Register from './components/Register';
 import UserProfile from './components/UserProfile';
 import UserContext from './UserContext';
 import MovieSearch from "./components/MovieSearch";
+import MovieDetails from "./components/MovieDetails";
+
 
 function App() {
     const [user, setUser] = React.useState(null);
@@ -53,6 +55,7 @@ function App() {
                         <Route path="/user/:username" element={<UserProfile />} />
                         <Route path="/search/:search" element={<MovieSearch/>} />
                         <Route path="/search" element={<MovieSearch/>} />
+                        <Route path="/details/:id" element={<MovieDetails />} />
 
                     </Routes>
                 </div>
